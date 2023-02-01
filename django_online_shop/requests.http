@@ -1,0 +1,135 @@
+# примеры API-запросов
+
+#регистрация пользователя
+
+POST http://localhost:8000/api/v1/auth/users/
+Content-Type: application/json
+
+{
+    "email": "egg@mail.com",
+    "username": "Egg",
+    "password": "egg1988Y"
+}
+
+###
+
+# получение списка товаров
+GET http://localhost:8000/api/v1/products/
+Content-Type: application/json
+
+###
+
+# получение товара
+GET http://localhost:8000/api/v1/products/1/
+Content-Type: application/json
+
+###
+
+# создание товара
+POST http://localhost:8000/api/v1/products/
+Content-Type: application/json
+
+{
+  "name": "iphone",
+  "description": "16",
+   "price": "1"
+}
+
+###
+
+# создание заказа
+POST http://localhost:8000/api/v1/orders/
+Content-Type: application/json
+Authorization: Token b4d563a669b176a76b0fad9433a21712dd75c51a
+
+{
+"positions": [
+{"product": 1,
+  "quantity": 3},
+  {"product": 2,
+  "quantity": 1 }
+]
+}
+
+
+###
+
+# попытка поменять статус заказа
+PATCH http://localhost:8000/api/v1/orders/5/
+Content-Type: application/json
+#Authorization: Token b4d563a669b176a76b0fad9433a21712dd75c51a
+
+{
+  "status": "NEW"
+}
+
+###
+
+# получение списка заказов админом
+GET http://localhost:8000/api/v1/orders/
+Content-Type: application/json
+Authorization: Token 34408fb70083eb5b17a1da35198003cf13f1cb89
+
+
+###
+
+# попытка удалить заказ
+DELETE http://localhost:8000/api/v1/orders/3/
+Content-Type: application/json
+Authorization: Token b4d563a669b176a76b0fad9433a21712dd75c51a
+
+###
+
+# создание отзыва
+POST http://localhost:8000/api/v1/product-reviews/
+Content-Type: application/json
+Authorization: Token 44a31551421ac24381d08380574fe4c56ee0c749
+
+{  
+  "product_id": 2,
+  "text": "ok"
+}
+
+
+###
+
+# получение отзыва
+GET http://localhost:8000/api/v1/product-reviews/
+Content-Type: application/json
+
+###
+
+# изменение отзыва
+PATCH http://localhost:8000/api/v1/product-reviews/1/
+Content-Type: application/json
+Authorization: Token cf127f8fe8ddad7bdc60ffc6fc079af902059329
+
+{
+   "rating": "5"
+}
+
+###
+
+# получение списка подборок
+GET http://localhost:8000/api/v1/product-collections/
+Content-Type: application/json
+
+###
+
+# фильтрация заказов по статусу
+GET http://localhost:8000/api/v1/orders/?status=NEW
+Content-Type: application/json
+Authorization: Token 34408fb70083eb5b17a1da35198003cf13f1cb89
+###
+
+# фильтрация отзывов по ID автора
+GET http://localhost:8000/api/v1/product-reviews/?creator=2
+Content-Type: application/json
+
+###
+
+# фильтрация товаров по цене
+GET http://localhost:8000/api/v1/products/?price_to=30
+Content-Type: application/json
+
+
